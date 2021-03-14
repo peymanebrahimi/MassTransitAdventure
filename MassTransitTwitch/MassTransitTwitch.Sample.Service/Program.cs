@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using GreenPipes;
+﻿using System.Threading.Tasks;
 using MassTransit;
 using MassTransitTwitch.Sample.Components.Consumers;
 using MassTransitTwitch.Sample.Components.StateMachines;
@@ -22,20 +20,20 @@ namespace MassTransitTwitch.Sample.Service
                     {
                         c.AddConsumersFromNamespaceContaining<SubmitOrderConsumer>();
 
-                        c.AddSagaStateMachine<OrderStateMachine, OrderState>()
+                        c.AddSagaStateMachine<OrderStateMachine, OrderState>(typeof(OrderStateMachineDefinition))
                             .RedisRepository();
 
                         c.UsingRabbitMq((context, cfg) =>
                         {
                             cfg.Host("localhost", "/", h => { });
-
-                            cfg.ReceiveEndpoint("submit-order",
-                                e =>
-                                {
-                                    e.PrefetchCount = 16;
-                                    e.UseMessageRetry(r => r.Interval(2, TimeSpan.FromSeconds(10)));
-                                    e.ConfigureConsumer<SubmitOrderConsumer>(context);
-                                });
+                            cfg.ConfigureEndpoints(context);
+                            //cfg.ReceiveEndpoint("submit-order",
+                            //    e =>
+                            //    {
+                            //        e.PrefetchCount = 16;
+                            //        e.UseMessageRetry(r => r.Interval(2, TimeSpan.FromSeconds(10)));
+                            //        e.ConfigureConsumer<SubmitOrderConsumer>(context);
+                            //    });
                         });
                     });
                     services.AddHostedService<MassTransitConsoleHostedService>();
@@ -48,4 +46,6 @@ namespace MassTransitTwitch.Sample.Service
                 }).RunConsoleAsync();
         }
     }
+
+
 }

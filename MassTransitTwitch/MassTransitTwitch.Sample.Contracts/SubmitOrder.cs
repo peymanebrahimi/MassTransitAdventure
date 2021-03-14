@@ -7,7 +7,7 @@ namespace MassTransitTwitch.Sample.Contracts
         Guid OrderId { get; }
         DateTime Timestamp { get; }
         string CustomerNumber { get; }
-        string PaymentCardNumber { get; }
+        //string PaymentCardNumber { get; }
 
         //MessageData<string> Notes { get; }
     }

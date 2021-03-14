@@ -8,7 +8,8 @@ namespace MassTransitTwitch.Sample.Components.StateMachines
     {
         public Guid CorrelationId { get; set; }
         public int Version { get; set; }
-
+        public byte[] RowVersion { get; set; }
+        
         public string CurrentState { get; set; }
 
         public string CustomerNumber { get; set; }
@@ -19,4 +20,6 @@ namespace MassTransitTwitch.Sample.Components.StateMachines
         public DateTime? SubmitDate { get; set; }
         public DateTime? Updated { get; set; }
     }
+
+    
 }

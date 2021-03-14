@@ -1,6 +1,8 @@
 ﻿using System;
 using Automatonymous;
+using GreenPipes;
 using MassTransit;
+using MassTransit.Definition;
 using MassTransitTwitch.Sample.Contracts;
 
 namespace MassTransitTwitch.Sample.Components.StateMachines
@@ -37,6 +39,7 @@ namespace MassTransitTwitch.Sample.Components.StateMachines
                         context.Instance.SubmitDate = context.Data.Timestamp;
                         context.Instance.Updated = DateTime.UtcNow;
                     })
+                    .TransitionTo(Submitted)
                 );
 
             During(Submitted,
@@ -62,5 +65,18 @@ namespace MassTransitTwitch.Sample.Components.StateMachines
         public State Submitted { get; private set; }
         public Event<OrderSubmitted> OrderSubmitted { get; private set; }
         public Event<CheckOrder> OrderStatusRequested { get; private set; }
+    }
+
+    public class OrderStateMachineDefinition : SagaDefinition<OrderState>
+    {
+        public OrderStateMachineDefinition()
+        {
+            ConcurrentMessageLimit = 4;
+        }
+        protected override void ConfigureSaga(IReceiveEndpointConfigurator endpointConfigurator, ISagaConfigurator<OrderState> sagaConfigurator)
+        {
+            endpointConfigurator.UseMessageRetry(r => r.Intervals(500, 5000, 10000));
+            endpointConfigurator.UseInMemoryOutbox();
+        }
     }
 }
