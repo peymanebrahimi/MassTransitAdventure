@@ -8,6 +8,6 @@
     <PackageReference Include="MassTransit.Analyzers" Version="7.1.6" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MassTransitTwitch.Contracts\MassTransitTwitch.Contracts.csproj" />
+    <ProjectReference Include="..\MassTransitTwitch.Sample.Contracts\MassTransitTwitch.Sample.Contracts.csproj" />
   </ItemGroup>
 </Project>

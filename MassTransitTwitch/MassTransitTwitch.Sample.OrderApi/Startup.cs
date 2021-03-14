@@ -1,21 +1,14 @@
+using MassTransit;
+using MassTransitTwitch.Sample.Components.Consumers;
+using MassTransitTwitch.Sample.Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MassTransit;
-using MassTransitTwitch.Components.Consumers;
-using MassTransitTwitch.Contracts;
 using Microsoft.OpenApi.Models;
 
-namespace MassTransitTwitch.OrderApi
+namespace MassTransitTwitch.Sample.OrderApi
 {
     public class Startup
     {
@@ -30,10 +23,18 @@ namespace MassTransitTwitch.OrderApi
         {
             services.AddMassTransit(cfg =>
             {
-                cfg.AddConsumer<SubmitOrderConsumer>();
-                cfg.AddRequestClient<SubmitOrder>();
-                
+                cfg.UsingRabbitMq((ctx, config) =>
+                {
+                    config.Host("localhost");
+                });
+
+                cfg.AddRequestClient<SubmitOrder>(); // no address => publish
+
+                cfg.AddRequestClient<CheckOrder>();
             });
+
+            services.AddMassTransitHostedService(); // manages bus
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

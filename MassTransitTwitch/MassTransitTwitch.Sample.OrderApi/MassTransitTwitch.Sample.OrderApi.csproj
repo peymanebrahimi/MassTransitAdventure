@@ -8,11 +8,12 @@
     <PackageReference Include="MassTransit.Analyzers" Version="7.1.6" />
     <PackageReference Include="MassTransit.AspNetCore" Version="7.1.6" />
     <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="7.1.6" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="7.1.6" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MassTransitTwitch.Components\MassTransitTwitch.Components.csproj" />
-    <ProjectReference Include="..\MassTransitTwitch.Contracts\MassTransitTwitch.Contracts.csproj" />
+    <ProjectReference Include="..\MassTransitTwitch.Sample.Components\MassTransitTwitch.Sample.Components.csproj" />
+    <ProjectReference Include="..\MassTransitTwitch.Sample.Contracts\MassTransitTwitch.Sample.Contracts.csproj" />
   </ItemGroup>
 </Project>

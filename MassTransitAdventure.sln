@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31105.61
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{78B689A9-B45F-4616-8F4B-0C9B83337A22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{78B689A9-B45F-4616-8F4B-0C9B83337A22}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MassTransitBasics", "MassTransitBasics", "{41FB3739-FF3E-4603-9DC5-18AF9ABA95BF}"
 EndProject
@@ -25,11 +25,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MassTransitKevinSmith.Shop"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MassTransitTwitch", "MassTransitTwitch", "{6741932E-3D3A-407C-8699-9E7E1F963871}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MassTransitTwitch.Components", "MassTransitTwitch\MassTransitTwitch.Components\MassTransitTwitch.Components.csproj", "{0D573F65-82F5-447D-95EE-64C2F17862B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MassTransitTwitch.Sample.Components", "MassTransitTwitch\MassTransitTwitch.Sample.Components\MassTransitTwitch.Sample.Components.csproj", "{0D573F65-82F5-447D-95EE-64C2F17862B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MassTransitTwitch.Contracts", "MassTransitTwitch\MassTransitTwitch.Contracts\MassTransitTwitch.Contracts.csproj", "{156FE120-E5A7-44D1-AF07-3D1340C00E98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MassTransitTwitch.Sample.Contracts", "MassTransitTwitch\MassTransitTwitch.Sample.Contracts\MassTransitTwitch.Sample.Contracts.csproj", "{156FE120-E5A7-44D1-AF07-3D1340C00E98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MassTransitTwitch.OrderApi", "MassTransitTwitch\MassTransitTwitch.OrderApi\MassTransitTwitch.OrderApi.csproj", "{0A5281C6-15B2-4EAE-A2A6-223D3FF3E4F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MassTransitTwitch.Sample.OrderApi", "MassTransitTwitch\MassTransitTwitch.Sample.OrderApi\MassTransitTwitch.Sample.OrderApi.csproj", "{0A5281C6-15B2-4EAE-A2A6-223D3FF3E4F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MassTransitTwitch.Sample.Service", "MassTransitTwitch\MassTransitTwitch.Sample.Service\MassTransitTwitch.Sample.Service.csproj", "{F1544A81-7F67-4926-9F7A-CA57927864F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,10 @@ Global
 		{0A5281C6-15B2-4EAE-A2A6-223D3FF3E4F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A5281C6-15B2-4EAE-A2A6-223D3FF3E4F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A5281C6-15B2-4EAE-A2A6-223D3FF3E4F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1544A81-7F67-4926-9F7A-CA57927864F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1544A81-7F67-4926-9F7A-CA57927864F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1544A81-7F67-4926-9F7A-CA57927864F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1544A81-7F67-4926-9F7A-CA57927864F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,6 +102,7 @@ Global
 		{0D573F65-82F5-447D-95EE-64C2F17862B1} = {6741932E-3D3A-407C-8699-9E7E1F963871}
 		{156FE120-E5A7-44D1-AF07-3D1340C00E98} = {6741932E-3D3A-407C-8699-9E7E1F963871}
 		{0A5281C6-15B2-4EAE-A2A6-223D3FF3E4F7} = {6741932E-3D3A-407C-8699-9E7E1F963871}
+		{F1544A81-7F67-4926-9F7A-CA57927864F6} = {6741932E-3D3A-407C-8699-9E7E1F963871}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8ADE63C4-7799-4965-8D6C-F83B1FBF2E86}

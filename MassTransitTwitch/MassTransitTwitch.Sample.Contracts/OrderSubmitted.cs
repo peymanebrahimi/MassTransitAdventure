@@ -1,12 +1,11 @@
 ﻿using System;
 
-namespace MassTransitTwitch.Contracts
+namespace MassTransitTwitch.Sample.Contracts
 {
-    public interface OrderSubmissionAccepted
+    public interface OrderSubmitted
     {
         Guid OrderId { get; }
         DateTime Timestamp { get; }
-
         string CustomerNumber { get; }
     }
 }

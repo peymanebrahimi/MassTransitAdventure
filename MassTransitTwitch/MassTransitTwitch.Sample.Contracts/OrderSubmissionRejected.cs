@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MassTransitTwitch.Contracts
+namespace MassTransitTwitch.Sample.Contracts
 {
     public interface OrderSubmissionRejected
     {
