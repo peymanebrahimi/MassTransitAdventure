@@ -9,6 +9,10 @@ namespace MassTransitTwitch.Sample.Components.Consumers
     {
         private readonly ILogger<SubmitOrderConsumer> _logger;
 
+        public SubmitOrderConsumer()
+        {
+        }
+        
         public SubmitOrderConsumer(ILogger<SubmitOrderConsumer> logger)
         {
             _logger = logger;
@@ -16,21 +20,18 @@ namespace MassTransitTwitch.Sample.Components.Consumers
 
         public async Task Consume(ConsumeContext<SubmitOrder> context)
         {
-            if (context.Message.CustomerNumber.Contains("test"))
+            if (context.Message.CustomerNumber.Contains("TEST"))
             {
                 if (context.RequestId != null)
-                {
                     await context.RespondAsync<OrderSubmissionRejected>(new
                     {
-
-                        OrderId = context.Message.OrderId,
-                        Timestamp = InVar.Timestamp,
-                        CustomerNumber = context.Message.CustomerNumber,
-                        Reason = $"test customer cannot submit order {context.Message.CustomerNumber}"
+                        InVar.Timestamp,
+                        context.Message.OrderId,
+                        context.Message.CustomerNumber,
+                        Reason = $"Test Customer cannot submit orders: {context.Message.CustomerNumber}"
                     });
 
-                    return;
-                }
+                return;
             }
 
             await context.Publish<OrderSubmitted>(new
