@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -6,16 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="appsettings.Development.json" />
     <None Remove="appsettings.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="appsettings.Development.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
     <Content Include="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
@@ -26,10 +20,9 @@
     <PackageReference Include="MassTransit" Version="7.1.6" />
     <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="7.1.6" />
     <PackageReference Include="MassTransit.RabbitMQ" Version="7.1.6" />
-    <PackageReference Include="MassTransit.Redis" Version="7.1.6" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Twitch.Sample.Components\Twitch.Sample.Components.csproj" />
+    <ProjectReference Include="..\Twitch.Warehouse.Components\Twitch.Warehouse.Components.csproj" />
   </ItemGroup>
 </Project>

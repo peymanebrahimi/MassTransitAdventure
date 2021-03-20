@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MassTransitTwitch.Sample.Components\Twitch.Sample.Components.csproj" />
     <ProjectReference Include="..\Twitch.Sample.Components\Twitch.Sample.Components.csproj" />
   </ItemGroup>
 

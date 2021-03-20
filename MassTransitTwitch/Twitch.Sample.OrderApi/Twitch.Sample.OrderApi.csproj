@@ -13,8 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MassTransitTwitch.Sample.Components\Twitch.Sample.Components.csproj" />
-    <ProjectReference Include="..\MassTransitTwitch.Sample.Contracts\Twitch.Sample.Contracts.csproj" />
     <ProjectReference Include="..\Twitch.Sample.Contracts\Twitch.Sample.Contracts.csproj" />
   </ItemGroup>
 </Project>
