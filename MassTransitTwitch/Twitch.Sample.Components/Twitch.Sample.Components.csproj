@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MassTransit" Version="7.1.6" />
+    <PackageReference Include="MassTransit.Analyzers" Version="7.1.6" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MassTransitTwitch.Sample.Contracts\Twitch.Sample.Contracts.csproj" />
+    <ProjectReference Include="..\Twitch.Sample.Contracts\Twitch.Sample.Contracts.csproj" />
+  </ItemGroup>
+</Project>

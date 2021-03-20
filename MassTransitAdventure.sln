@@ -25,15 +25,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MassTransitKevinSmith.Shop"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MassTransitTwitch", "MassTransitTwitch", "{6741932E-3D3A-407C-8699-9E7E1F963871}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MassTransitTwitch.Sample.Components", "MassTransitTwitch\MassTransitTwitch.Sample.Components\MassTransitTwitch.Sample.Components.csproj", "{0D573F65-82F5-447D-95EE-64C2F17862B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitch.Sample.Components", "MassTransitTwitch\Twitch.Sample.Components\Twitch.Sample.Components.csproj", "{0D573F65-82F5-447D-95EE-64C2F17862B1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MassTransitTwitch.Sample.Contracts", "MassTransitTwitch\MassTransitTwitch.Sample.Contracts\MassTransitTwitch.Sample.Contracts.csproj", "{156FE120-E5A7-44D1-AF07-3D1340C00E98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitch.Sample.Contracts", "MassTransitTwitch\Twitch.Sample.Contracts\Twitch.Sample.Contracts.csproj", "{156FE120-E5A7-44D1-AF07-3D1340C00E98}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MassTransitTwitch.Sample.OrderApi", "MassTransitTwitch\MassTransitTwitch.Sample.OrderApi\MassTransitTwitch.Sample.OrderApi.csproj", "{0A5281C6-15B2-4EAE-A2A6-223D3FF3E4F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitch.Sample.OrderApi", "MassTransitTwitch\Twitch.Sample.OrderApi\Twitch.Sample.OrderApi.csproj", "{0A5281C6-15B2-4EAE-A2A6-223D3FF3E4F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MassTransitTwitch.Sample.Service", "MassTransitTwitch\MassTransitTwitch.Sample.Service\MassTransitTwitch.Sample.Service.csproj", "{F1544A81-7F67-4926-9F7A-CA57927864F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitch.Sample.Service", "MassTransitTwitch\Twitch.Sample.Service\Twitch.Sample.Service.csproj", "{F1544A81-7F67-4926-9F7A-CA57927864F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MassTransitTwitch.Sample.Components.Tests", "MassTransitTwitch\MassTransitTwitch.Sample.Components.Tests\MassTransitTwitch.Sample.Components.Tests.csproj", "{BA4B66E8-C960-455C-AAD4-A980A794FBEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitch.Sample.Components.Tests", "MassTransitTwitch\Twitch.Sample.Components.Tests\Twitch.Sample.Components.Tests.csproj", "{BA4B66E8-C960-455C-AAD4-A980A794FBEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
