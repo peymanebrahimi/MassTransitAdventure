@@ -3,6 +3,7 @@ using Automatonymous;
 using GreenPipes;
 using MassTransit;
 using MassTransit.Definition;
+using MassTransitTwitch.Sample.Components.StateMachines.OrderStateMachineActivities;
 using MassTransitTwitch.Sample.Contracts;
 
 namespace MassTransitTwitch.Sample.Components.StateMachines
@@ -13,9 +14,7 @@ namespace MassTransitTwitch.Sample.Components.StateMachines
         {
             InstanceState(x => x.CurrentState);
 
-            Event(() => OrderSubmitted,
-                x => x
-                    .CorrelateById(m => m.Message.OrderId));
+            Event(() => OrderSubmitted, x => x.CorrelateById(m => m.Message.OrderId));
 
             Event(() => OrderStatusRequested,
                     (IEventCorrelationConfigurator<OrderState, CheckOrder> x) =>
@@ -31,6 +30,10 @@ namespace MassTransitTwitch.Sample.Components.StateMachines
                     }
                 );
 
+            Event(() => OrderAccepted, x => x.CorrelateById(m => m.Message.OrderId));
+
+            Event(() => AccountClosed, x => x.CorrelateBy((saga, context) => saga.CustomerNumber == context.Message.CustomerNumber));
+
             Initially(
                 When(OrderSubmitted)
                     .Then(context =>
@@ -43,7 +46,12 @@ namespace MassTransitTwitch.Sample.Components.StateMachines
                 );
 
             During(Submitted,
-                Ignore(OrderSubmitted));
+                Ignore(OrderSubmitted),
+                When(AccountClosed)
+                    .TransitionTo(Canceled),
+                When(OrderAccepted)
+                    .Activity(x => x.OfType<AcceptOrderActivity>())
+                    .TransitionTo(Accepted));
 
             DuringAny(
                 When(OrderStatusRequested)
@@ -63,8 +71,13 @@ namespace MassTransitTwitch.Sample.Components.StateMachines
         }
 
         public State Submitted { get; private set; }
+        public State Canceled { get; private set; }
+        public State Accepted { get; private set; }
+        
         public Event<OrderSubmitted> OrderSubmitted { get; private set; }
         public Event<CheckOrder> OrderStatusRequested { get; private set; }
+        public Event<OrderAccepted> OrderAccepted { get; private set; }
+        public Event<CustomerAccountClosed> AccountClosed { get; private set; }
     }
 
     public class OrderStateMachineDefinition : SagaDefinition<OrderState>
