@@ -8,11 +8,11 @@ namespace Twitch.Warehouse.Components.Consumers
     {
         public async Task Consume(ConsumeContext<AllocateInventory> context)
         {
-            //await context.Publish<AllocationCreated>(new
-            //{
-            //    context.Message.AllocationId,
-            //    HoldDuration = 15000,
-            //});
+            await context.Publish<AllocationCreated>(new
+            {
+                context.Message.AllocationId,
+                HoldDuration = 15000,
+            });
 
             await context.RespondAsync<InventoryAllocated>(new
             {

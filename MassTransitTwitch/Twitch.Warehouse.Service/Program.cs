@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Threading.Tasks;
 using MassTransit;
-using MassTransit.Definition;
 using MassTransit.RabbitMqTransport;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Serilog;
+using Serilog.Events;
 using Twitch.Warehouse.Components.Consumers;
+using Twitch.Warehouse.Components.StateMachines;
 
 namespace Twitch.Warehouse.Service
 {
@@ -21,12 +22,12 @@ namespace Twitch.Warehouse.Service
         {
             //var isService = !(Debugger.IsAttached || args.Contains("--console"));
 
-            //Log.Logger = new LoggerConfiguration()
-            //    .MinimumLevel.Debug()
-            //    .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
-            //    .Enrich.FromLogContext()
-            //    .WriteTo.Console()
-            //    .CreateLogger();
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+                .Enrich.FromLogContext()
+                .WriteTo.Console()
+                .CreateLogger();
 
             var builder = new HostBuilder()
                 .ConfigureAppConfiguration((hostingContext, config) =>
@@ -50,16 +51,16 @@ namespace Twitch.Warehouse.Service
 
                     //_module.Initialize(configuration);
 
-                    services.TryAddSingleton(KebabCaseEndpointNameFormatter.Instance);
+                    //services.TryAddSingleton(KebabCaseEndpointNameFormatter.Instance);
                     services.AddMassTransit(cfg =>
                     {
                         cfg.AddConsumersFromNamespaceContaining<AllocateInventoryConsumer>();
-                        //cfg.AddSagaStateMachine<AllocationStateMachine, AllocationState>(typeof(AllocateStateMachineDefinition))
-                        //    .MongoDbRepository(r =>
-                        //    {
-                        //        r.Connection = "mongodb://127.0.0.1";
-                        //        r.DatabaseName = "allocations";
-                        //    });
+                        cfg.AddSagaStateMachine<AllocationStateMachine, AllocationState>(typeof(AllocateStateMachineDefinition))
+                            .MongoDbRepository(r =>
+                            {
+                                r.Connection = "mongodb://127.0.0.1";
+                                r.DatabaseName = "allocations";
+                            });
 
                         cfg.UsingRabbitMq(ConfigureBus);
                     });
@@ -68,7 +69,7 @@ namespace Twitch.Warehouse.Service
                 })
                 .ConfigureLogging((hostingContext, logging) =>
                 {
-                    //logging.AddSerilog(dispose: true);
+                    logging.AddSerilog(dispose: true);
                     logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
                 });
 
@@ -77,7 +78,7 @@ namespace Twitch.Warehouse.Service
             //_telemetryClient?.Flush();
             //_module?.Dispose();
 
-            //Log.CloseAndFlush();
+            Log.CloseAndFlush();
         }
 
         static void ConfigureBus(IBusRegistrationContext busRegistrationContext, IRabbitMqBusFactoryConfigurator configurator)

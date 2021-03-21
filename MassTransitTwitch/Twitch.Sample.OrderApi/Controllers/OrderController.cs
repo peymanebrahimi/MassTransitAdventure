@@ -15,16 +15,19 @@ namespace Twitch.Sample.OrderApi.Controllers
         private readonly IRequestClient<SubmitOrder> _submitOrderRequestClient;
         private readonly ISendEndpointProvider _sendEndpointProvider;
         private readonly IRequestClient<CheckOrder> _checkOrderClient;
+        private readonly IPublishEndpoint _publishEndpoint;
 
         public OrderController(ILogger<OrderController> logger,
             IRequestClient<SubmitOrder> submitOrderRequestClient,
             ISendEndpointProvider sendEndpointProvider,
-            IRequestClient<CheckOrder> checkOrderClient)
+            IRequestClient<CheckOrder> checkOrderClient,
+            IPublishEndpoint publishEndpoint)
         {
             _logger = logger;
             _submitOrderRequestClient = submitOrderRequestClient;
             _sendEndpointProvider = sendEndpointProvider;
             _checkOrderClient = checkOrderClient;
+            _publishEndpoint = publishEndpoint;
         }
 
         [HttpGet]
@@ -76,10 +79,22 @@ namespace Twitch.Sample.OrderApi.Controllers
             }
         }
 
+        [HttpPatch]
+        public async Task<IActionResult> Patch(Guid id)
+        {
+            await _publishEndpoint.Publish<OrderAccepted>(new
+            {
+                OrderId = id,
+                InVar.Timestamp,
+            });
+
+            return Accepted();
+        }
+        
         [HttpPut]
         public async Task<IActionResult> Put(Guid id, string customerNumber)
         {
-            var endPoint = await _sendEndpointProvider.GetSendEndpoint(new Uri("exchange:submit-order"));
+            var endPoint = await _sendEndpointProvider.GetSendEndpoint(new Uri("exchange:submit-order")); // SubmitOrder
 
             await endPoint.Send<SubmitOrder>(new
             {

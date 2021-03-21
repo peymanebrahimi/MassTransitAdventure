@@ -4,7 +4,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Twitch.Sample.Components.Consumers;
+using Twitch.Sample.Components.CourierActivities;
 using Twitch.Sample.Components.StateMachines;
+using Twitch.Sample.Components.StateMachines.OrderStateMachineActivities;
+using Twitch.Warehouse.Contracts;
 
 namespace Twitch.Sample.Service
 {
@@ -16,10 +19,14 @@ namespace Twitch.Sample.Service
                 .CreateDefaultBuilder(args)
                 .ConfigureServices((ctx, services) =>
                 {
+                    services.AddScoped<AcceptOrderActivity>();
+
                     services.AddMassTransit(c =>
                     {
                         c.AddConsumersFromNamespaceContaining<SubmitOrderConsumer>();
 
+                        c.AddActivitiesFromNamespaceContaining<AllocateInventoryActivity>();
+                        
                         c.AddSagaStateMachine<OrderStateMachine, OrderState>(typeof(OrderStateMachineDefinition))
                             .RedisRepository();
 
@@ -35,7 +42,10 @@ namespace Twitch.Sample.Service
                             //        e.ConfigureConsumer<SubmitOrderConsumer>(context);
                             //    });
                         });
+
+                        c.AddRequestClient<AllocateInventory>();
                     });
+                    
                     services.AddHostedService<MassTransitConsoleHostedService>();
 
                 })

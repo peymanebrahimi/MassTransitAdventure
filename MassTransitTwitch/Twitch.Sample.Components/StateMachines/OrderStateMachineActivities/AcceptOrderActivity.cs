@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Automatonymous;
 using GreenPipes;
+using MassTransit;
 using Twitch.Sample.Contracts;
 
 namespace Twitch.Sample.Components.StateMachines.OrderStateMachineActivities
@@ -20,6 +21,19 @@ namespace Twitch.Sample.Components.StateMachines.OrderStateMachineActivities
 
         public async Task Execute(BehaviorContext<OrderState, OrderAccepted> context, Behavior<OrderState, OrderAccepted> next)
         {
+            Console.WriteLine("Hello, World. Order is {0}", context.Data.OrderId);
+
+            var consumeContext = context.GetPayload<ConsumeContext>();
+
+            var sendEndpoint = await consumeContext.GetSendEndpoint(new Uri("queue:fulfill-order")); // FulfillOrder
+
+            await sendEndpoint.Send<FulfillOrder>(new
+            {
+                context.Data.OrderId,
+                context.Instance.CustomerNumber,
+                //context.Instance.PaymentCardNumber,
+            });
+
             await next.Execute(context).ConfigureAwait(false);
         }
 
