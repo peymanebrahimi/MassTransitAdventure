@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Twitch.Sample.Service": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

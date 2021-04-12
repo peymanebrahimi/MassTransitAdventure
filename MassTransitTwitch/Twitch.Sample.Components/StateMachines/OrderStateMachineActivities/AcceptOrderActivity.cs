@@ -21,7 +21,7 @@ namespace Twitch.Sample.Components.StateMachines.OrderStateMachineActivities
 
         public async Task Execute(BehaviorContext<OrderState, OrderAccepted> context, Behavior<OrderState, OrderAccepted> next)
         {
-            Console.WriteLine("Hello, World. Order is {0}", context.Data.OrderId);
+            Console.WriteLine($"Hello, World. Order is {context.Data.OrderId}");
 
             var consumeContext = context.GetPayload<ConsumeContext>();
 

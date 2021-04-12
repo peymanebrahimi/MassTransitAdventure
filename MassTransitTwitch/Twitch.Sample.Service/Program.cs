@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using GreenPipes;
 using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -19,33 +21,41 @@ namespace Twitch.Sample.Service
                 .CreateDefaultBuilder(args)
                 .ConfigureServices((ctx, services) =>
                 {
-                    services.AddScoped<AcceptOrderActivity>();
+                    //services.AddScoped<AcceptOrderActivity>();
 
-                    services.AddMassTransit(c =>
-                    {
-                        c.AddConsumersFromNamespaceContaining<SubmitOrderConsumer>();
-
-                        c.AddActivitiesFromNamespaceContaining<AllocateInventoryActivity>();
-                        
-                        c.AddSagaStateMachine<OrderStateMachine, OrderState>(typeof(OrderStateMachineDefinition))
-                            .RedisRepository();
-
-                        c.UsingRabbitMq((context, cfg) =>
+                    services.AddMassTransit(serviceCollectionBusConfigurator =>
                         {
-                            cfg.Host("localhost", "/", h => { });
-                            cfg.ConfigureEndpoints(context);
-                            //cfg.ReceiveEndpoint("submit-order",
-                            //    e =>
-                            //    {
-                            //        e.PrefetchCount = 16;
-                            //        e.UseMessageRetry(r => r.Interval(2, TimeSpan.FromSeconds(10)));
-                            //        e.ConfigureConsumer<SubmitOrderConsumer>(context);
-                            //    });
+                            serviceCollectionBusConfigurator.AddConsumersFromNamespaceContaining<SubmitOrderConsumer>();
+
+                            //serviceCollectionBusConfigurator.AddActivitiesFromNamespaceContaining<AllocateInventoryActivity>();
+
+                            serviceCollectionBusConfigurator
+                                .AddSagaStateMachine<OrderStateMachine, OrderState>(typeof(OrderStateMachineDefinition))
+                                .RedisRepository();
+
+                            serviceCollectionBusConfigurator.UsingRabbitMq((busRegistrationContext, busFactoryConfigurator) =>
+                            {
+                                busFactoryConfigurator.Host("rabbitmq", "/", h =>
+                                {
+                                    h.Username("guest");
+                                    h.Password("guest");
+                                });
+                                
+                                busFactoryConfigurator.ReceiveEndpoint(
+                                    e =>
+                                    {
+                                        e.PrefetchCount = 25;
+                                        e.UseMessageRetry(r => r.Interval(2, TimeSpan.FromSeconds(10)));
+                                        e.ConfigureConsumer<SubmitOrderConsumer>(busRegistrationContext);
+                                    }
+                                );
+
+                                busFactoryConfigurator.ConfigureEndpoints(busRegistrationContext);
+                            });
+
+                            serviceCollectionBusConfigurator.AddRequestClient<AllocateInventory>();
                         });
 
-                        c.AddRequestClient<AllocateInventory>();
-                    });
-                    
                     services.AddHostedService<MassTransitConsoleHostedService>();
 
                 })

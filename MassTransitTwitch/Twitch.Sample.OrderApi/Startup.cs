@@ -20,16 +20,20 @@ namespace Twitch.Sample.OrderApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMassTransit(cfg =>
+            services.AddMassTransit(serviceCollectionBusConfigurator =>
             {
-                cfg.UsingRabbitMq((ctx, config) =>
+                serviceCollectionBusConfigurator.UsingRabbitMq((busRegistrationContext, busFactoryConfigurator) =>
                 {
-                    config.Host("localhost");
+                    busFactoryConfigurator.Host("rabbitmq", "/", h =>
+                    {
+                        h.Username("guest");
+                        h.Password("guest");
+                    });
                 });
 
-                cfg.AddRequestClient<SubmitOrder>(); // no address => publish
+                serviceCollectionBusConfigurator.AddRequestClient<SubmitOrder>(); // no address => publish
 
-                cfg.AddRequestClient<CheckOrder>();
+                serviceCollectionBusConfigurator.AddRequestClient<CheckOrder>();
             });
 
             services.AddMassTransitHostedService(); // manages bus

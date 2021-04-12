@@ -26,7 +26,7 @@ namespace MassTransitKevinSmith.Reporting
                         {
                             cfg.Host("localhost", "/", h => { });
 
-                            cfg.ReceiveEndpoint("ShopOrder",
+                            cfg.ReceiveEndpoint("Reporting",
                                 e =>
                                 {
                                     e.PrefetchCount = 16;

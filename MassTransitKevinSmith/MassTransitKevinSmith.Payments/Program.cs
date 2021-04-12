@@ -24,7 +24,7 @@ namespace MassTransitKevinSmith.Payments
                         {
                             cfg.Host("localhost", "/", h => { });
 
-                            cfg.ReceiveEndpoint("ShopOrder",
+                            cfg.ReceiveEndpoint("Payment",
                                 e =>
                                 {
                                     e.PrefetchCount = 16;

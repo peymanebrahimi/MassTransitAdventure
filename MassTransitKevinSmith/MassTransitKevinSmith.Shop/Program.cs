@@ -33,7 +33,7 @@ namespace MassTransitKevinSmith.Shop
                         {
                             cfg.Host("localhost", "/", h => { });
 
-                            cfg.ReceiveEndpoint("ShopOrder",
+                            cfg.ReceiveEndpoint("Shop",
                                 e =>
                                 {
                                     e.PrefetchCount = 16;
