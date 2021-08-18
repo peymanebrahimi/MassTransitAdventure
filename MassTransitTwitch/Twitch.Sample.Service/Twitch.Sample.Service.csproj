@@ -25,12 +25,12 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MassTransit" Version="7.2.1" />
-    <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="7.2.1" />
-    <PackageReference Include="MassTransit.RabbitMQ" Version="7.2.1" />
-    <PackageReference Include="MassTransit.Redis" Version="7.2.1" />
+    <PackageReference Include="MassTransit" Version="7.2.2" />
+    <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="7.2.2" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="7.2.2" />
+    <PackageReference Include="MassTransit.Redis" Version="7.2.2" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.13" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.11.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Twitch.Sample.Components\Twitch.Sample.Components.csproj" />
