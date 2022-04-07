@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
 using Twitch.Sample.Contracts;
 
 namespace Twitch.Sample.OrderApi
@@ -36,7 +37,12 @@ namespace Twitch.Sample.OrderApi
                 serviceCollectionBusConfigurator.AddRequestClient<CheckOrder>();
             });
 
-            services.AddMassTransitHostedService(); // manages bus
+            services.Configure<MassTransitHostOptions>(options =>
+            {
+                options.WaitUntilStarted = true;
+                options.StartTimeout = TimeSpan.FromSeconds(30);
+                options.StopTimeout = TimeSpan.FromMinutes(1);
+            });
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

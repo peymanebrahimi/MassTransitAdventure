@@ -1,6 +1,5 @@
 ﻿using System;
-using Automatonymous;
-using MassTransit.Saga;
+using MassTransit;
 
 namespace Twitch.Sample.Components.StateMachines
 {

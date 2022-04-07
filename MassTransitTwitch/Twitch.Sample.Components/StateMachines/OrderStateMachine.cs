@@ -1,8 +1,5 @@
 ﻿using System;
-using Automatonymous;
-using GreenPipes;
 using MassTransit;
-using MassTransit.Definition;
 using Twitch.Sample.Components.StateMachines.OrderStateMachineActivities;
 using Twitch.Sample.Contracts;
 

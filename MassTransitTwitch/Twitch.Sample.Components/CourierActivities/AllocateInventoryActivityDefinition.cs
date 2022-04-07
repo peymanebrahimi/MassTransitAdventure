@@ -1,4 +1,4 @@
-﻿using MassTransit.Definition;
+﻿using MassTransit;
 
 namespace Twitch.Sample.Components.CourierActivities
 {

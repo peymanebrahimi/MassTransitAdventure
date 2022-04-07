@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Automatonymous;
-using GreenPipes;
 using MassTransit;
 using Twitch.Sample.Contracts;
 
 namespace Twitch.Sample.Components.StateMachines.OrderStateMachineActivities
 {
-    public class AcceptOrderActivity : Activity<OrderState, OrderAccepted>
+    public class AcceptOrderActivity : IStateMachineActivity<OrderState, OrderAccepted>
     {
         public void Probe(ProbeContext context)
         {
@@ -19,7 +17,8 @@ namespace Twitch.Sample.Components.StateMachines.OrderStateMachineActivities
             visitor.Visit(this);
         }
 
-        public async Task Execute(BehaviorContext<OrderState, OrderAccepted> context, Behavior<OrderState, OrderAccepted> next)
+        public async Task Execute(BehaviorContext<OrderState, OrderAccepted> context, 
+            IBehavior<OrderState, OrderAccepted> next)
         {
             Console.WriteLine($"Hello, World. Order is {context.Data.OrderId}");
 
@@ -37,10 +36,9 @@ namespace Twitch.Sample.Components.StateMachines.OrderStateMachineActivities
             await next.Execute(context).ConfigureAwait(false);
         }
 
-        public Task Faulted<TException>(BehaviorExceptionContext<OrderState, OrderAccepted, TException> context,
-            Behavior<OrderState, OrderAccepted> next) where TException : Exception
+        public Task Faulted<TException>(BehaviorExceptionContext<OrderState, OrderAccepted, TException> context, IBehavior<OrderState, OrderAccepted> next) where TException : Exception
         {
-            return next.Faulted(context);
+            throw new NotImplementedException();
         }
     }
 }

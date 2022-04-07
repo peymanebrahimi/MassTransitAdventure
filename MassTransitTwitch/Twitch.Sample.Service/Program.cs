@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using GreenPipes;
 using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Twitch.Sample.Components.Consumers;
-using Twitch.Sample.Components.CourierActivities;
 using Twitch.Sample.Components.StateMachines;
 using Twitch.Sample.Components.StateMachines.OrderStateMachineActivities;
 using Twitch.Warehouse.Contracts;

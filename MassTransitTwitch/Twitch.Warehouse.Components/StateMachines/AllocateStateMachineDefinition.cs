@@ -1,6 +1,4 @@
-﻿using GreenPipes;
-using MassTransit;
-using MassTransit.Definition;
+﻿using MassTransit;
 
 namespace Twitch.Warehouse.Components.StateMachines
 {

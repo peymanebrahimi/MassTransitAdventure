@@ -1,8 +1,5 @@
 ﻿using System;
-using GreenPipes;
 using MassTransit;
-using MassTransit.ConsumeConfigurators;
-using MassTransit.Definition;
 
 namespace Twitch.Sample.Components.Consumers
 {

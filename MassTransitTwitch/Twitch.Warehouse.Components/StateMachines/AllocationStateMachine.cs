@@ -1,5 +1,4 @@
 ﻿using System;
-using Automatonymous;
 using MassTransit;
 using Microsoft.Extensions.Logging;
 using Twitch.Warehouse.Contracts;

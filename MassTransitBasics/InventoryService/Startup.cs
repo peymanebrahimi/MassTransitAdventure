@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using MassTransit;
+using System;
 
 namespace InventoryService
 {
@@ -32,7 +33,12 @@ namespace InventoryService
                     });
                 });
             });
-            services.AddMassTransitHostedService();
+            services.Configure<MassTransitHostOptions>(options =>
+            {
+                options.WaitUntilStarted = true;
+                options.StartTimeout = TimeSpan.FromSeconds(30);
+                options.StopTimeout = TimeSpan.FromMinutes(1);
+            });
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
