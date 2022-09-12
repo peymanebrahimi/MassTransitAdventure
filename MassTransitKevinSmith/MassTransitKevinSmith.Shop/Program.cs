@@ -30,7 +30,10 @@ namespace MassTransitKevinSmith.Shop
 
                         c.UsingRabbitMq((context, cfg) =>
                         {
-                            cfg.Host("localhost", "/", h => { });
+                            cfg.Host("localhost", "/", h => {
+                                h.Username("guest");
+                                h.Password("guest");
+                            });
 
                             cfg.ReceiveEndpoint("Shop",
                                 e =>
@@ -41,7 +44,7 @@ namespace MassTransitKevinSmith.Shop
                                 });
                         });
                     });
-                    services.AddHostedService<MassTransitConsoleHostedService>();
+                    //services.AddHostedService<MassTransitConsoleHostedService>();
                     //services.AddSingleton<IPublishEndpoint>();
                     services.AddHostedService<ShopWork>();
                 })

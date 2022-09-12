@@ -23,16 +23,17 @@ namespace MassTransitKevinSmith.Payments
                         {
                             cfg.Host("localhost", "/", h => { });
 
-                            cfg.ReceiveEndpoint("Payment",
-                                e =>
-                                {
-                                    e.PrefetchCount = 16;
-                                    e.UseMessageRetry(r => r.Interval(2, TimeSpan.FromSeconds(10)));
-                                    e.ConfigureConsumer<OrderRequestedConsumer>(context);
-                                });
+                            //cfg.ReceiveEndpoint("Payment",
+                            //    e =>
+                            //    {
+                            //        e.PrefetchCount = 16;
+                            //        e.UseMessageRetry(r => r.Interval(2, TimeSpan.FromSeconds(10)));
+                            //        e.ConfigureConsumer<OrderRequestedConsumer>(context);
+                            //    });
+                            cfg.ConfigureEndpoints(context);
                         });
                     });
-                    services.AddHostedService<MassTransitConsoleHostedService>();
+                    //services.AddHostedService<MassTransitConsoleHostedService>();
                     services.AddHostedService<PaymentWork>();
                 })
                 .ConfigureLogging((hostingContext, logging) =>

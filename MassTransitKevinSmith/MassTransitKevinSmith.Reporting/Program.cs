@@ -36,7 +36,7 @@ namespace MassTransitKevinSmith.Reporting
                                 });
                         });
                     });
-                    services.AddHostedService<MassTransitConsoleHostedService>();
+                    //services.AddHostedService<MassTransitConsoleHostedService>();
                     services.AddHostedService<ReportingWork>();
                     services.AddSingleton<ReportStore>();
                 })

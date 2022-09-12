@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31105.61
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{78B689A9-B45F-4616-8F4B-0C9B83337A22}"
 EndProject
@@ -37,11 +37,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitch.Sample.Components.Te
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Warehouse", "Warehouse", "{9A8034E2-F7D2-43FD-994E-F57DF686B34F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitch.Warehouse.Contracts", "MassTransitTwitch\Twitch.Warehouse.Contracts\Twitch.Warehouse.Contracts.csproj", "{D5E7C9FD-B396-43A7-AE86-50A4EC5EC1B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitch.Warehouse.Contracts", "MassTransitTwitch\Twitch.Warehouse.Contracts\Twitch.Warehouse.Contracts.csproj", "{D5E7C9FD-B396-43A7-AE86-50A4EC5EC1B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitch.Warehouse.Service", "MassTransitTwitch\Twitch.Warehouse.Service\Twitch.Warehouse.Service.csproj", "{A67BE1F9-52D8-49A2-87E7-5A5702724D69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitch.Warehouse.Service", "MassTransitTwitch\Twitch.Warehouse.Service\Twitch.Warehouse.Service.csproj", "{A67BE1F9-52D8-49A2-87E7-5A5702724D69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitch.Warehouse.Components", "MassTransitTwitch\Twitch.Warehouse.Components\Twitch.Warehouse.Components.csproj", "{726724D9-B52D-4BCD-80A3-644DFC3E99F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twitch.Warehouse.Components", "MassTransitTwitch\Twitch.Warehouse.Components\Twitch.Warehouse.Components.csproj", "{726724D9-B52D-4BCD-80A3-644DFC3E99F5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Start", "Start", "{0ED6950A-A8EC-4C32-82F2-71686F275063}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GettingStarted", "GettingStarted\GettingStarted.csproj", "{B580E551-9672-4036-AB2E-496E3CCDEC67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -113,6 +117,10 @@ Global
 		{726724D9-B52D-4BCD-80A3-644DFC3E99F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{726724D9-B52D-4BCD-80A3-644DFC3E99F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{726724D9-B52D-4BCD-80A3-644DFC3E99F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B580E551-9672-4036-AB2E-496E3CCDEC67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B580E551-9672-4036-AB2E-496E3CCDEC67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B580E551-9672-4036-AB2E-496E3CCDEC67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B580E551-9672-4036-AB2E-496E3CCDEC67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -134,6 +142,7 @@ Global
 		{D5E7C9FD-B396-43A7-AE86-50A4EC5EC1B6} = {9A8034E2-F7D2-43FD-994E-F57DF686B34F}
 		{A67BE1F9-52D8-49A2-87E7-5A5702724D69} = {9A8034E2-F7D2-43FD-994E-F57DF686B34F}
 		{726724D9-B52D-4BCD-80A3-644DFC3E99F5} = {9A8034E2-F7D2-43FD-994E-F57DF686B34F}
+		{B580E551-9672-4036-AB2E-496E3CCDEC67} = {0ED6950A-A8EC-4C32-82F2-71686F275063}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8ADE63C4-7799-4965-8D6C-F83B1FBF2E86}
